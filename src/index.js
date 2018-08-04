@@ -19,17 +19,17 @@
 function isAllTrue(array, fn) {
     var res = true;
 
-  if (!Array.isArray(array) || array.length == 0) {
-    throw new Error('empty array');
-  } else if (!(fn instanceof Function)) {
-    throw new Error('fn is not a function');
-  }
+    if (!Array.isArray(array) || array.length == 0) {
+        throw new Error('empty array');
+    } else if (!(fn instanceof Function)) {
+        throw new Error('fn is not a function');
+    }
 
-  for (item of array) {
-    res = res && fn(item);
-  }
+    for (let item of array) {
+        res = res && fn(item);
+    }
 
-  return res;
+    return res;
 }
 
 /*
@@ -51,17 +51,17 @@ function isAllTrue(array, fn) {
 function isSomeTrue(array, fn) {
     var res = false;
 
-  if (!Array.isArray(array) || array.length == 0) {
-    throw new Error('empty array');
-  } else if (!(fn instanceof Function)) {
-    throw new Error('fn is not a function');
-  }
+    if (!Array.isArray(array) || array.length == 0) {
+        throw new Error('empty array');
+    } else if (!(fn instanceof Function)) {
+        throw new Error('fn is not a function');
+    }
 
-  for (item of array) {
-    res = res || fn(item);
-  }
+    for (let item of array) {
+        res = res || fn(item);
+    }
 
-  return res;
+    return res;
 }
 
 /*
@@ -78,19 +78,19 @@ function isSomeTrue(array, fn) {
 function returnBadArguments(fn) {
     var arrBad = [];
 
-  if (!(fn instanceof Function)) {
-    throw new Error('fn is not a function');
-  }
-
-  for (let i = 1; i < arguments.length; i++) {
-    try {
-      fn(arguments[i]);
-    } catch(e) {
-      arrBad.push(arguments[i]);
+    if (!(fn instanceof Function)) {
+        throw new Error('fn is not a function');
     }
-  }
 
-  return arrBad;
+    for (let i = 1; i < arguments.length; i++) {
+        try {
+            fn(arguments[i]);
+        } catch (e) {
+            arrBad.push(arguments[i]);
+        }
+    }
+
+    return arrBad;
 }
 
 /*
@@ -110,58 +110,62 @@ function returnBadArguments(fn) {
    - number не является числом (с текстом "number is not a number")
    - какой-либо из аргументов div является нулем (с текстом "division by 0")
  */
-function calculator() {
+function calculator(number = 0) {
     if (!isFinite(number)) {
         throw new Error('number is not a number');
-      }
+    }
     
-      var obj = {
-    
+    var obj = {
+        
         sum: function() {
-          var res = arguments[0];
-    
-          for (let i = 1; i < arguments.length; i++) {
-            res += arguments[i];
-          }
-    
-          return res;
+            let args = [...arguments]; 
+            let res = number;
+            
+            for (let item of args) {
+                res += item;
+            }
+            
+            return res;
         },
     
         dif: function() {
-          var res = arguments[0];
-    
-          for (let i = 1; i < arguments.length; i++) {
-            res -= arguments[i];
-          }
-    
-          return res;
+            let args = [...arguments]; 
+            let res = number;
+            
+            for (let item of args) {
+                res -= item;
+            }
+            
+            return res;
         },
     
         div: function() {
-          var res = arguments[0];
-    
-          for (let i = 1; i < arguments.length; i++) {
-            if (arguments[i] == 0) {
-              throw new Error('division by 0');
+            let args = [...arguments]; 
+            let res = number;
+            
+            for (let item of args) {
+                if (item == 0) {
+                    throw new Error('division by 0');
+                }
+                res /= item;
             }
-            res /=  arguments[i];
-          }
-    
-          return res;
+            
+            return res;
         },
     
         mul: function() {
-          var res = arguments[0];
-    
-          for (let i = 1; i < arguments.length; i++) {
-            res *= arguments[i];
-          }
-    
-          return res;
+            let args = [...arguments]; 
+            let res = number;
+            
+            for (let item of args) {
+                res *= item;
+            }
+            
+            return res;
         }
-      }
+    }
     
-      return obj;
+    return obj;
 }
 
 /* При решении задач, пострайтесь использовать отладчик */
