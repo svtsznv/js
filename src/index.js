@@ -46,7 +46,7 @@ function reduce(array, fn, initial) {
         idxBegin = 0;
     }
     for (let i = idxBegin; i < array.length; i++) {
-        res = fn(res, array[i]);
+        res = fn(res, array[i], i, array);
     }
 
     return res;
@@ -84,6 +84,9 @@ function slice(array, from, to) {
     var idxEnd = (to === undefined) ? array.length : to;
 
     idxBegin = (idxBegin < 0) ? array.length + idxBegin : idxBegin;
+    idxBegin = (idxBegin < 0) ? 0 : idxBegin;
+
+    idxEnd = (to > array.length) ? array.length : idxEnd;
     idxEnd = (idxEnd < 0) ? array.length + idxEnd : idxEnd;
   
     for (let i = idxBegin; i < idxEnd; i++) {
@@ -103,6 +106,8 @@ function createProxy(obj) {
     var hndlr = {
         set: function(obj, prop, value) {
             obj[prop] = (isFinite(value)) ? value * value : value;
+            
+            return true;
         }
     };
       

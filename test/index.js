@@ -1,10 +1,3 @@
-import assert from 'assert';
-
-describe('Test', () => {
-    it('should work', () => {
-        assert(true == true);
-    });
-});
 const nativeSlice = Array.prototype.slice;
 const nativeMap = Array.prototype.map;
 const nativeReduce = Array.prototype.reduce;
