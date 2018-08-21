@@ -130,8 +130,6 @@ loadTowns()
 filterInput.addEventListener('keyup', function(event) {
   
     function filterTowns(towns) {
-        // массив имен, отвечающих условию фильтра
-        let arrFltName = [];
       
         // очищаем блок с результатами поиска
         filterResult.innerHTML = '';
@@ -140,12 +138,12 @@ filterInput.addEventListener('keyup', function(event) {
         towns.forEach(objTown => {
             // сравниваем наименование текущего города и введенную подстроку
             if (isMatching(objTown.name, event.target.value)) {
-                arrFltName.push(objTown.name);
+                let newDiv = document.createElement('DIV');
+                
+                filterInput.appendChild(newDiv);
+                filterResult.innerHTML += objTown.name + '<br>';
             }
         });
-    
-        // формируем блок с результатами поиска
-        filterResult.innerHTML = arrFltName.join('<br>');
     }
   
     if (townsPromise) {
