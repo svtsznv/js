@@ -179,18 +179,23 @@ a {
       .list-item:hover{
         background-color: $light-grey;
       }
+
+      .list-item--friend{
+        display: block;
+      }
+
       .list-item--ava img{
         width: 45px;
         height: 45px;
       }
       .list-item--ava {
+        float: left;
         margin: 2px 5px;
         border-radius: 50%;
         width: 45px;
         height: 45px;
       }
       .list-item--name {
-        display: block;
         float: left;
         padding: 15px 0 5px 0;
         font-size: 12px;

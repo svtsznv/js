@@ -1,7 +1,9 @@
 {{#each list}}
 	<li class="list-item" draggable="true" data-id="{{id}}">
-		<img class="list-item--ava" src="{{photo_100}}" draggable="false"/>
-		<div class="list-item--name">{{first_name}} {{last_name}}</div>
+		<div class="list-item--friend">
+			<img class="list-item--ava" src="{{photo_100}}" draggable="false"/>
+			<div class="list-item--name">{{first_name}} {{last_name}}</div>
+		</div>
 		{{#if selected}}
 		<img class="list-item--btn img-remove" src="../src/images/remove.png" draggable="false">
 		{{else}}
